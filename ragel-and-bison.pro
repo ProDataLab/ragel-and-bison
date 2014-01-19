@@ -15,4 +15,18 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += src/main.cpp
+include(../../../ragel.pri)
+include(../../../bison.pri)
+
+RAGEL_SOURCES = src/lexer.rl
+BISON_SOURCES = src/parser.y
+
+SOURCES += \
+    src/main.cpp
+
+OTHER_FILES += \
+    $$RAGEL_SOURCES \
+    $$BISON_SOURCES
+
+HEADERS += \
+    src/lexer.h

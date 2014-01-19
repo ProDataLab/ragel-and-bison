@@ -1,8 +1,14 @@
-#include <QCoreApplication>
+#include <cstring>
+#include "lexer.h"
 
-int main(int argc, char *argv[])
+
+
+int main(int argc, char** argv)
 {
-    QCoreApplication a(argc, argv);
-
-    return a.exec();
+    for (int i = 1; i < argc; ++i) {
+        Calc::Lexer lexer(argv[i], argv[i] + strlen(argv[i]));
+        Calc::Parser parser(lexer);
+        parser.parse();
+    }
+    return 0;
 }
